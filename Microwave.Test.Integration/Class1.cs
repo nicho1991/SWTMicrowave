@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MicrowaveOvenClasses.Boundary;
+using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    public class Class1
+    [TestFixture]
+    public class IntegrationTest1
     {
+        
+        private IButton a;
+        [Test]
+        public void UserInterfaceButton()
+        {
+            
+        }
+    }
+
+    [TestFixture]
+    public class IntegrationTest2
+    {
+
     }
 }
