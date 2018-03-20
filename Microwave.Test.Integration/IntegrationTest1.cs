@@ -102,6 +102,8 @@ namespace Microwave.Test.Integration
             startCancel.Press();
             startCancel.Press();
             Light.Received().TurnOff();
+            CookControl.Received().Stop();
+            Display.Received().Clear();
         }
         [Test]
         public void UserInterface_StartCancelButton_start_cook()
@@ -110,6 +112,7 @@ namespace Microwave.Test.Integration
             TimeButton.Press();
             startCancel.Press();
             CookControl.Received().StartCooking(50,60);
+            Light.Received().TurnOn();
         }
 
         [Test]
@@ -120,6 +123,8 @@ namespace Microwave.Test.Integration
             startCancel.Press();
             startCancel.Press();
             CookControl.Received().Stop();
+            Light.Received().TurnOff();
+            
         }
 
         [Test]
@@ -129,6 +134,7 @@ namespace Microwave.Test.Integration
             TimeButton.Press();
             startCancel.Press();
             Display.Received(1).Clear();
+
         }
 
     }
