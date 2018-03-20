@@ -37,14 +37,27 @@ namespace Microwave.Test.Integration
 
             UserInterface = new UserInterface(PowerButton, TimeButton, startCancel, Door, Display, Light, CookControl);
         }
-        //billede 2
-        [Test]
-        public void UserInterfaceButton()
+
+        //door
+
+        //buttons
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(200)]
+        public void UserInterface_PowerButton(int n)
         {
-
-            PowerButton.Press();
-            Display.Received().ShowPower(50);
-
+            for (int i = 0; i < n; i++)
+            {
+                PowerButton.Press();      
+            }
+            Display.Received(n/(700/50)).ShowPower(700); //n / (max power / power inc)
         }
+
+        public void UserInterface_TimeButton()
+        { }
+
+        public void UserInterface_Start_CancelButton()
+        { }
+
     }
 }
