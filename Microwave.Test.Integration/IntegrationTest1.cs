@@ -38,7 +38,7 @@ namespace Microwave.Test.Integration
             UserInterface = new UserInterface(PowerButton, TimeButton, startCancel, Door, Display, Light, CookControl);
         }
 
-        //door
+        #region Door
         [Test]
         public void UserInterface_Door_Open()
         {
@@ -60,7 +60,10 @@ namespace Microwave.Test.Integration
             Door.Close();
             Light.DidNotReceive().TurnOff();
         }
-        //buttons
+
+        #endregion
+
+        #region Buttons
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(200)]
@@ -68,9 +71,9 @@ namespace Microwave.Test.Integration
         {
             for (int i = 0; i < n; i++)
             {
-                PowerButton.Press();      
+                PowerButton.Press();
             }
-            Display.Received(n/(700/50)).ShowPower(700); //n / (max power / power inc)
+            Display.Received(n / (700 / 50)).ShowPower(700); //n / (max power / power inc)
         }
 
         [TestCase(1)]
@@ -84,7 +87,7 @@ namespace Microwave.Test.Integration
                 TimeButton.Press();
             }
 
-            Display.Received(1).ShowTime(n,0);
+            Display.Received(1).ShowTime(n, 0);
         }
         [Test]
         public void UserInterface_StartCancelButton_start()
@@ -103,7 +106,8 @@ namespace Microwave.Test.Integration
             startCancel.Press();
             Light.Received().TurnOff();
             CookControl.Received().Stop();
-            Display.Received().Clear();
+            Display.Received(2).Clear();
+
         }
         [Test]
         public void UserInterface_StartCancelButton_start_cook()
@@ -111,7 +115,7 @@ namespace Microwave.Test.Integration
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
-            CookControl.Received().StartCooking(50,60);
+            CookControl.Received().StartCooking(50, 60);
             Light.Received().TurnOn();
         }
 
@@ -124,7 +128,7 @@ namespace Microwave.Test.Integration
             startCancel.Press();
             CookControl.Received().Stop();
             Light.Received().TurnOff();
-            
+
         }
 
         [Test]
@@ -133,9 +137,11 @@ namespace Microwave.Test.Integration
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
+            //after a while cook is done (stub)
             Display.Received(1).Clear();
 
         }
+        #endregion
 
     }
 }
