@@ -61,6 +61,9 @@
   <ItemGroup>
     <Compile Include="IntegrationTest1.cs" />
     <Compile Include="IntegrationTest2.cs" />
+    <Compile Include="IntergrationTest3.cs" />
+    <Compile Include="IntergrationTest4.cs" />
+    <Compile Include="IntergrationTest5cs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
