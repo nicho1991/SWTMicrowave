@@ -86,7 +86,7 @@ namespace Microwave.Test.Integration
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
-            //after a while cooking is done
+            //after a while cooking is done (timer stub)
             UserInterface.CookingIsDone();
             output.Received(1).OutputLine(Arg.Is<string>(x => x.Contains("off")));
         }
