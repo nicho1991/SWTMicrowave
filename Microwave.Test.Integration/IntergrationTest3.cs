@@ -157,7 +157,7 @@ namespace Microwave.Test.Integration
             startCancel.Press();
 
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("01:00")));
-            Thread.Sleep(1000); //wait to see if timer goes down
+            Thread.Sleep(1100); //wait to see if timer goes down
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("59")));
 
             //mut.ReleaseMutex();

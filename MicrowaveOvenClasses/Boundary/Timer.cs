@@ -1,15 +1,16 @@
 ﻿using System;
 using MicrowaveOvenClasses.Interfaces;
-
+using System.Threading;
 namespace MicrowaveOvenClasses.Boundary
 {
     public class Timer : ITimer
     {
+
         public int TimeRemaining { get; private set; }
 
         public event EventHandler Expired;
         public event EventHandler TimerTick;
-
+        private static Mutex mut = new Mutex();
         private System.Timers.Timer timer;
 
         public Timer()
@@ -18,11 +19,12 @@ namespace MicrowaveOvenClasses.Boundary
             // Bind OnTimerEvent with an object of this, and set up the event
             timer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimerEvent);
             timer.Interval = 1000; // 1 second intervals
-            timer.AutoReset = true;  // Repeatable timer
+            timer.AutoReset = true;  // Repeatable timer          
         }
 
         public void Start(int time)
         {
+            mut.WaitOne();
             TimeRemaining = time;
             timer.Enabled = true;
         }
@@ -30,6 +32,7 @@ namespace MicrowaveOvenClasses.Boundary
         public void Stop()
         {
             timer.Enabled = false;
+            mut.ReleaseMutex();
         }
 
         private void Expire()
