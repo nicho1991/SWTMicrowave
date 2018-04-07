@@ -21,7 +21,7 @@ namespace Microwave.Test.Unit
             ManualResetEvent pause = new ManualResetEvent(false);
 
             uut.TimerTick += (sender, args) => pause.Set();
-            uut.Start(2000);
+            uut.Start(2);
 
             // wait for a tick, but no longer
             Assert.That(pause.WaitOne(1100));
