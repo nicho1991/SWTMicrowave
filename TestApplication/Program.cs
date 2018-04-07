@@ -26,9 +26,6 @@ namespace Microwave.Application
         private static IOutput output;
         private static IDoor Door;
         private static Mutex mut = new Mutex();
-   
-
-
 
         static void Main(string[] args)
         {
@@ -41,9 +38,9 @@ namespace Microwave.Application
             Display = new Display(output);
             powerTube = new PowerTube(output);
             Light = new Light(output);
+
             cookcontroller = new CookController(timer, Display, powerTube, UI);
             UI = new UserInterface(PowerButton, TimeButton, startCancel, Door, Display, Light, cookcontroller);
-
 
             Door.Open();
             Door.Close();
@@ -54,8 +51,6 @@ namespace Microwave.Application
             TimeButton.Press();
 
             startCancel.Press();
-
-
 
             System.Console.WriteLine("Tast enter når applikationen skal afsluttes");
             System.Console.ReadLine();

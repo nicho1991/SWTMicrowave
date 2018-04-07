@@ -142,17 +142,14 @@ namespace MicrowaveOvenClasses.Controllers
 
         public void CookingIsDone()
         {
-            switch (myState)
-            {
-                case States.COOKING:
-                    powerLevel = 50;
-                    time = 1;
-                    myDisplay.Clear();
-                    myLight.TurnOff();
-                    // Beep 3 times
-                    myState = States.READY;
-                    break;
-            }
+
+                powerLevel = 50;
+                time = 1;
+                myDisplay.Clear();
+                myLight.TurnOff();
+                // Beep 3 times
+                myState = States.READY;
+
         }
     }
 }
