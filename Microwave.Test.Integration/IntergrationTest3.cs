@@ -54,7 +54,7 @@ namespace Microwave.Test.Integration
         public void Timer_CookControlToTimer_outputShown()
         {
        //     mut.WaitOne();
-            cookcontroller.StartCooking(50,1001);
+            cookcontroller.StartCooking(50,2000);
             Thread.Sleep(1000);
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("1")));
       //      mut.ReleaseMutex();
@@ -157,7 +157,7 @@ namespace Microwave.Test.Integration
             startCancel.Press();
 
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("01:00")));
-            Thread.Sleep(1101); //wait to see if timer goes down
+            Thread.Sleep(1000); //wait to see if timer goes down
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("59")));
 
             //mut.ReleaseMutex();
@@ -212,7 +212,7 @@ namespace Microwave.Test.Integration
         {
             //mut.WaitOne();
             cookcontroller.StartCooking(50, 1000);
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("off")));
             //mut.ReleaseMutex();
         }
