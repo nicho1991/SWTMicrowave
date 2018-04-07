@@ -29,7 +29,7 @@ namespace Microwave.Test.Integration
         private ITimer timer;
         private IOutput output;
         private IDoor Door;
-    //    private static Mutex mut = new Mutex();
+        private static Mutex mut = new Mutex();
         [SetUp]
         public void setup()
         {
@@ -151,7 +151,7 @@ namespace Microwave.Test.Integration
         [Test]
         public void Display_TimerTicks_outputsTime()
         {
-        //    mut.WaitOne();
+            //mut.WaitOne();
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
@@ -160,7 +160,7 @@ namespace Microwave.Test.Integration
             Thread.Sleep(1101); //wait to see if timer goes down
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("59")));
 
-        //    mut.ReleaseMutex();
+            //mut.ReleaseMutex();
         }
 
         [Test]
@@ -210,11 +210,11 @@ namespace Microwave.Test.Integration
         [Test]
         public void PowerTube_TimerExpired_outputsOff()
         {
-            mut.WaitOne();
+            //mut.WaitOne();
             cookcontroller.StartCooking(50, 1000);
             Thread.Sleep(2000);
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("off")));
-            mut.ReleaseMutex();
+            //mut.ReleaseMutex();
         }
 
         [Test]
