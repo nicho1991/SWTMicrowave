@@ -173,7 +173,7 @@ namespace Microwave.Test.Integration
             startCancel.Press();
 
             Door.Open();
-            Thread.Sleep(2000); //wait to see if timer goes down
+
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("clear")));
 
          //   mut.ReleaseMutex();
