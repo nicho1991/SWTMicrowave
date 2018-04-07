@@ -13,21 +13,24 @@ namespace Microwave.Application
 {
     class Program
     {
-        private ICookController cookcontroller;
+        private static ICookController cookcontroller;
 
-        private IButton PowerButton;
-        private IButton TimeButton;
-        private IButton startCancel;
-        private IUserInterface UI;
-        private ILight Light;
-        private IDisplay Display;
-        private IPowerTube powerTube;
-        private ITimer timer;
-        private IOutput output;
-        private IDoor Door;
+        private static IButton PowerButton;
+        private static IButton TimeButton;
+        private static IButton startCancel;
+        private static IUserInterface UI;
+        private static ILight Light;
+        private static IDisplay Display;
+        private static IPowerTube powerTube;
+        private static ITimer timer;
+        private static IOutput output;
+        private static IDoor Door;
         private static Mutex mut = new Mutex();
    
-        public void setup()
+
+
+
+        static void Main(string[] args)
         {
             Door = new Door();
             PowerButton = new Button();
@@ -42,9 +45,10 @@ namespace Microwave.Application
 
             UI = new UserInterface(PowerButton, TimeButton, startCancel, Door, Display, Light, cookcontroller);
 
-        }
-        static void Main(string[] args)
-        {
+
+            Door.Open();
+            Door.Close();
+
             System.Console.WriteLine("Tast enter når applikationen skal afsluttes");
             System.Console.ReadLine();
         }
