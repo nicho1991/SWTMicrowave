@@ -145,6 +145,7 @@ namespace Microwave.Test.Integration
 
             string time = (n).ToString();
             output.Received(1).OutputLine(Arg.Is<string>(x => x.Contains(time)));
+            
         }
 
         //on timer tick show time
@@ -211,7 +212,7 @@ namespace Microwave.Test.Integration
         public void PowerTube_TimerExpired_outputsOff()
         {
             //mut.WaitOne();
-            cookcontroller.StartCooking(50, 1000);
+            cookcontroller.StartCooking(50, 1);
             Thread.Sleep(1100);
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("off")));
             //mut.ReleaseMutex();
