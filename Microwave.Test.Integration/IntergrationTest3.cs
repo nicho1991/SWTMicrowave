@@ -29,7 +29,7 @@ namespace Microwave.Test.Integration
         private ITimer timer;
         private IOutput output;
         private IDoor Door;
-        private static Mutex mut = new Mutex();
+    //    private static Mutex mut = new Mutex();
         [SetUp]
         public void setup()
         {
@@ -53,11 +53,11 @@ namespace Microwave.Test.Integration
         [Test]
         public void Timer_CookControlToTimer_outputShown()
         {
-            mut.WaitOne();
+       //     mut.WaitOne();
             cookcontroller.StartCooking(50,1001);
             Thread.Sleep(1000);
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("1")));
-            mut.ReleaseMutex();
+      //      mut.ReleaseMutex();
         }
 
         [TestCase(5000, 4)]
@@ -73,7 +73,7 @@ namespace Microwave.Test.Integration
         [Test]
         public void TimerDisplay_TimerDone_Display_clear()
         {
-            mut.WaitOne();
+        //    mut.WaitOne();
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
@@ -81,13 +81,13 @@ namespace Microwave.Test.Integration
 
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("clear")));
 
-            mut.ReleaseMutex();
+       //     mut.ReleaseMutex();
         }
 
         [Test]
         public void Timer_OpenDoor_TimerOff()
         {
-            mut.WaitOne();
+           // mut.WaitOne();
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
@@ -96,13 +96,13 @@ namespace Microwave.Test.Integration
             Thread.Sleep(2000); //wait to see if timer goes down
             Assert.That(timer.TimeRemaining, Is.EqualTo(60));
            
-            mut.ReleaseMutex();
+         //   mut.ReleaseMutex();
         }
 
         [Test]
         public void Timer_cancel_TimerOff()
         {
-            mut.WaitOne();
+         //   mut.WaitOne();
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
@@ -111,7 +111,7 @@ namespace Microwave.Test.Integration
             Thread.Sleep(2000); //wait to see if timer goes down
             Assert.That(timer.TimeRemaining, Is.EqualTo(60));
 
-            mut.ReleaseMutex();
+          //  mut.ReleaseMutex();
         }
 
         #endregion
@@ -151,7 +151,7 @@ namespace Microwave.Test.Integration
         [Test]
         public void Display_TimerTicks_outputsTime()
         {
-            mut.WaitOne();
+        //    mut.WaitOne();
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
@@ -160,13 +160,13 @@ namespace Microwave.Test.Integration
             Thread.Sleep(1101); //wait to see if timer goes down
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("59")));
 
-            mut.ReleaseMutex();
+        //    mut.ReleaseMutex();
         }
 
         [Test]
         public void Display_OpensDoor_outputsClear()
         {
-            mut.WaitOne();
+         //   mut.WaitOne();
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
@@ -175,13 +175,13 @@ namespace Microwave.Test.Integration
             Thread.Sleep(2000); //wait to see if timer goes down
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("clear")));
 
-            mut.ReleaseMutex();
+         //   mut.ReleaseMutex();
         }
         //cancel display clear
         [Test]
         public void Display_Cancel_outputsClear()
         {
-            mut.WaitOne();
+         //   mut.WaitOne();
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
@@ -190,7 +190,7 @@ namespace Microwave.Test.Integration
             Thread.Sleep(2000); //wait to see if timer goes down
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("clear")));
 
-            mut.ReleaseMutex();
+          //  mut.ReleaseMutex();
         }
 
         #endregion
