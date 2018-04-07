@@ -55,7 +55,7 @@ namespace Microwave.Test.Integration
         {
        //     mut.WaitOne();
             cookcontroller.StartCooking(50,2000);
-            Thread.Sleep(1000);
+            Thread.Sleep(1100);
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("1")));
       //      mut.ReleaseMutex();
         }
@@ -212,7 +212,7 @@ namespace Microwave.Test.Integration
         {
             //mut.WaitOne();
             cookcontroller.StartCooking(50, 1000);
-            Thread.Sleep(1000);
+            Thread.Sleep(1100);
             output.Received().OutputLine(Arg.Is<string>(x => x.Contains("off")));
             //mut.ReleaseMutex();
         }
