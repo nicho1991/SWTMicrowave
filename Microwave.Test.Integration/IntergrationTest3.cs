@@ -78,7 +78,7 @@ namespace Microwave.Test.Integration
             startCancel.Press();
             Thread.Sleep(61000);
 
-            output.Received(1).OutputLine(Arg.Is<string>(x => x.Contains("clear")));
+            output.Received(2).OutputLine(Arg.Is<string>(x => x.Contains("clear")));
         }
 
         [Test]
