@@ -73,15 +73,12 @@ namespace Microwave.Test.Integration
         [Test]
         public void TimerDisplay_TimerDone_Display_clear()
         {
-        //    mut.WaitOne();
             PowerButton.Press();
             TimeButton.Press();
             startCancel.Press();
             Thread.Sleep(61000);
 
-            output.Received(2).OutputLine(Arg.Is<string>(x => x.Contains("clear")));
-
-       //     mut.ReleaseMutex();
+            output.Received(1).OutputLine(Arg.Is<string>(x => x.Contains("clear")));
         }
 
         [Test]
@@ -247,7 +244,6 @@ namespace Microwave.Test.Integration
         }
 
         [TestCase(0, 3000)]
-        [TestCase(101, 3000)]
         [TestCase(701, 3000)]
         public void PowerTube_StartCookingException(int power, int time)
         {
